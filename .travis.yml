@@ -1,0 +1,17 @@
+language: java
+jdk:
+ - oraclejdk8
+before_install:
+ - cd Backend
+ - ls
+ - ./mvnw process-resources
+addons:
+  sonarqube:
+    token:
+      secure: 65fa9a9e58cfbb0df68f10515bc3a4b9451625f3
+script:
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -Dspring.profiles.active=travis
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'

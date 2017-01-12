@@ -1,0 +1,58 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bindstone.graphbank.repository.CountryMapper">
+
+    <resultMap type="com.bindstone.graphbank.domain.Country" id="CountryMap">
+        <id column="ID" property="nodeId"/>
+        <result column="UUID" property="id" jdbcType="VARCHAR"/>
+        <result column="NODE_ID" property="nodeId" jdbcType="NUMERIC"/>
+        <result column="NAME" property="name" jdbcType="VARCHAR"/>
+        <result column="CREATED" property="created" jdbcType="TIMESTAMP"/>
+        <result column="MODIFIED" property="modified" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="country_result">
+      id(p) AS ID,
+      p.id AS UUID,
+      p.name AS NAME,
+      p.created AS CREATED,
+      p.modified AS MODIFIED
+    </sql>
+
+    <sql id="country_update">
+      p.name = #{name},
+      p.modified = #{modified}
+    </sql>
+
+    <sql id="country_insert">
+      id: #{id},
+      name: #{name},
+      created: #{created},
+      modified: #{modified}
+    </sql>
+
+    <select id="findAll" resultMap="CountryMap">
+        MATCH (p:Country) RETURN
+        <include refid="country_result"/>
+    </select>
+
+    <select id="findById" parameterType="String" resultMap="CountryMap">
+        MATCH (p:Country {id: #{id}}) RETURN
+        <include refid="country_result"/>
+    </select>
+
+    <update id="update" parameterType='com.bindstone.graphbank.domain.Country'>
+        MERGE (p:Country {id: #{id}}) ON MATCH SET
+        <include refid="country_update"/>
+    </update>
+
+    <insert id='insert' parameterType='com.bindstone.graphbank.domain.Country' keyProperty="nodeId" keyColumn="ID">
+        CREATE (p:Country {
+        <include refid="country_insert"/>
+        })
+    </insert>
+
+    <delete id="delete" parameterType='String'>
+        MATCH (p:Country {id: #{id}}) DELETE p
+    </delete>
+
+</mapper>

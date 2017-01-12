@@ -1,0 +1,26 @@
+<h1>Country List</h1>
+
+<table>
+    <thead>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Created</th>
+    <th>Modified</th>
+    <th>Delete</th>
+    <th>Get</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let country of countries">
+        <td>{{ country.id }}</td>
+        <td>{{ country.name }}</td>
+        <td>{{ country.created }}</td>
+        <td>{{ country.modified }}</td>
+        <td>
+            <button class="Get" (click)="deleteCountry(country.id)">Delete</button>
+        </td>
+        <td>
+            <button class="Get" (click)="getCountry(country.id)">Get</button>
+        </td>
+    </tr>
+    </tbody>
+</table>

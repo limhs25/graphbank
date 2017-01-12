@@ -1,0 +1,24 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bindstone.graphbank.repository.DatabaseMapper">
+
+    <delete id="clear">
+        MATCH (n) DETACH
+        DELETE n
+    </delete>
+
+    <insert id="initData">
+        LOAD CSV WITH HEADERS FROM "https://dl.dropboxusercontent.com/u/14493611/movies_setup.csv" AS row
+        MERGE (m:Movie {title:row.title}) ON CREATE SET m.tagline = row.tagline,m.released=row.released,
+        m.created = timestamp(), m.modified = timestamp()
+        MERGE (p:Person {name:row.name}) ON CREATE SET p.born = row.born, p.created = timestamp(),
+        p.modified = timestamp()
+        FOREACH (_ in CASE row.type WHEN "ACTED_IN" then [1] else [] end |
+         MERGE (p)-[r:ACTED_IN]->(m) ON CREATE SET r.roles = split(row.roles,";")[0..-1]
+        )
+        FOREACH (_ in CASE row.type WHEN "DIRECTED" then [1] else [] end | MERGE (p)-[:DIRECTED]->(m))
+        FOREACH (_ in CASE row.type WHEN "PRODUCED" then [1] else [] end | MERGE (p)-[:PRODUCED]->(m))
+        FOREACH (_ in CASE row.type WHEN "WROTE"    then [1] else [] end | MERGE (p)-[:WROTE   ]->(m))
+        FOREACH (_ in CASE row.type WHEN "REVIEWED" then [1] else [] end | MERGE (p)-[:REVIEWED]->(m))
+    </insert>
+
+</mapper>

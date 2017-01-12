@@ -1,0 +1,37 @@
+= Graph Bank
+
+image:https://travis-ci.org/bindstone/graphbank.svg?branch=master["Build Status", link="https://travis-ci.org/bindstone/graphbank"]
+
+https://sonarqube.com/dashboard/index?id=com.bindstone.graphbank%3Agraphbank_backend[Sonar Report]
+
+=== Overview
+
+This is an experimental project using the following technologies: #Java 8 #Spring #MyBatis #Neo4j #Dart #Angular2
+
+==== Code strategies
+
+Java: Generics
+
+Dart: Source_Gen _Dart files ending with .g.dart are not written but generated._
+
+=== Preparation
+
+For executing the source generation on Dart:
+
+cd ./Frontend
+
+dart tool/build.dart
+
+For continuous source generation:
+
+dart tool/watch.dart
+
+For continuous development on Dart use:
+
+pub serve
+
+=== Building the project
+
+cd Backend
+
+mvn clean install
