@@ -12,7 +12,7 @@ This is an experimental project using the following technologies: #Java 8 #Sprin
 
 Java: Generics
 
-Dart: Source_Gen _Dart files ending with .g.dart are not written but generated._
+Dart: Source_Gen _Dart files ending with .g.dart are not written but generated.
 
 === Preparation
 
