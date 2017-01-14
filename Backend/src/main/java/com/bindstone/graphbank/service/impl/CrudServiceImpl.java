@@ -6,7 +6,6 @@ import com.bindstone.graphbank.service.CrudService;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
@@ -38,9 +37,8 @@ public abstract class CrudServiceImpl<T extends DomainObject> implements CrudSer
 
     @Override
     public List<T> save(final List<T> clazzes) {
-        List<T> rtn = new ArrayList<T>();
         for (T clazz : clazzes) {
-            clazz = save(clazz);
+            save(clazz);
         }
         return clazzes;
     }

@@ -49,7 +49,7 @@ public abstract class AbstractCrudTest<T extends DomainObject> {
 
         clazzes = getCrudService().findAll();
         assertNotNull("List should be generated", clazzes);
-        assertEquals("List should be still empty", 1, clazzes.size());
+        assertEquals("List should be still contains 1 element", 1, clazzes.size());
 
         T updatedClazz = getCrudService().findById(addedClazz.getId());
         getCrudService().update(updatedClazz);
@@ -57,9 +57,15 @@ public abstract class AbstractCrudTest<T extends DomainObject> {
         assertEquals("ID of objects is not equals", addedClazz.getId(), updatedClazz.getId());
         assertNotEquals("Versions must be different", addedClazz.getModified(), updatedClazz.getModified());
 
+        T upsert = getCrudService().findById(addedClazz.getId());
+        getCrudService().save(upsert);
+        upsert = getCrudService().findById(addedClazz.getId());
+        assertEquals("ID of objects is not equals", addedClazz.getId(), upsert.getId());
+        assertNotEquals("Versions must be different", addedClazz.getModified(), upsert.getModified());
+
         clazzes = getCrudService().findAll();
         assertNotNull("List should be generated", clazzes);
-        assertEquals("List should be still empty", 1, clazzes.size());
+        assertEquals("List should be still contains 1 element", 1, clazzes.size());
     }
 
     @Test
