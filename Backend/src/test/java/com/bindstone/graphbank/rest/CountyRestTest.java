@@ -53,7 +53,8 @@ public class CountyRestTest extends AbstractRestTest {
     public void deleteCountry() throws Exception {
         Country save = countryService.save(CountryProvider.ICELAND());
         RestAssuredMockMvc
-                .delete("/country/"+save.getId());
+                .delete("/country/"+save.getId())
+                .then().statusCode(200);
     }
 
 }

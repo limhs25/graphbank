@@ -45,3 +45,5 @@ https://travis-ci.org/[Travis] automated code test and building service.
 https://sonarqube.com/[SonarQube] Code quality service.
 
 http://www.graphenedb.com/[GraphenDB] Neo4J Cloud Graph Database.
+
+https://activiti.alfresco.com/[Activiti] Activiti Alfresco BPM.
