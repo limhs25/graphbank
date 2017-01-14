@@ -1,16 +1,16 @@
 package com.bindstone.graphbank.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import java.util.logging.Logger;
-
 @Configuration
 public class CorsConfig {
-    static final Logger log = Logger.getLogger(CorsConfig.class.getName());
+    static final Logger log = LoggerFactory.getLogger(CorsConfig.class);
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {

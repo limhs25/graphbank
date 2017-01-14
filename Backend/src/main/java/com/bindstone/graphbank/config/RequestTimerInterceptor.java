@@ -1,13 +1,15 @@
 package com.bindstone.graphbank.config;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.logging.Logger;
 
 public class RequestTimerInterceptor extends HandlerInterceptorAdapter {
-    static Logger log = Logger.getLogger("Rest Request");
+    static Logger log = LoggerFactory.getLogger("Rest Request");
 
     @Override
     public boolean preHandle(HttpServletRequest request,
@@ -35,7 +37,7 @@ public class RequestTimerInterceptor extends HandlerInterceptorAdapter {
             throws Exception {
         long startTime = (Long) request.getAttribute("startTime");
         long time = System.currentTimeMillis() - startTime;
-        log.info(String.format("[%s] %s %nms", request.getMethod(), request.getRequestURL().toString(), time));
+        log.info(String.format("[%s] %s [%sms]", request.getMethod(), request.getRequestURL().toString(), time));
     }
 
 }
