@@ -45,18 +45,22 @@ public abstract class AbstractNode implements Serializable, DomainObject {
         this.modified = modified;
     }
 
+    @Override
     public Long getNodeId() {
         return nodeId;
     }
 
+    @Override
     public void setNodeId(Long nodeId) {
         this.nodeId = nodeId;
     }
 
+    @Override
     public String getId() {
         return id;
     }
 
+    @Override
     public void setId(String id) {
         this.id = id;
     }
