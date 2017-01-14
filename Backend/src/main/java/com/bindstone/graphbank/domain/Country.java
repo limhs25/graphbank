@@ -1,5 +1,8 @@
 package com.bindstone.graphbank.domain;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 /**
  * Country Node Description
  */
@@ -29,14 +32,14 @@ public class Country extends AbstractNode {
 
         Country country = (Country) o;
 
-        return new org.apache.commons.lang3.builder.EqualsBuilder()
+        return new EqualsBuilder()
                 .append(name, country.name)
                 .isEquals();
     }
 
     @Override
     public int hashCode() {
-        return new org.apache.commons.lang3.builder.HashCodeBuilder(17, 37)
+        return new HashCodeBuilder(17, 37)
                 .append(name)
                 .toHashCode();
     }

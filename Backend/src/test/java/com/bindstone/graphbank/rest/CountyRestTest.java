@@ -15,12 +15,11 @@ import org.springframework.web.context.WebApplicationContext;
 
 @Transactional
 public class CountyRestTest extends AbstractRestTest {
+    @Autowired
+    protected WebApplicationContext wac;
     //TOOO Fix Test error in allocating POrt ?!?
     @Autowired
     private CountryService countryService;
-
-    @Autowired
-    protected WebApplicationContext wac;
 
     @Before
     public void setup() {
@@ -39,21 +38,37 @@ public class CountyRestTest extends AbstractRestTest {
         RestAssuredMockMvc.get("/country");
     }
 
+    @Test
+    public void getByIdCountry() throws Exception {
+        Country save = countryService.save(CountryProvider.LUXEMBOURG());
+        MockMvcResponse mockMvcResponse = RestAssuredMockMvc.get("/country/" + save.getId());
+        RestAssuredMockMvc.get("/country");
+    }
 
     @Test
     public void createCountry() throws Exception {
         Country country = CountryProvider.LUXEMBOURG();
         RestAssuredMockMvc
-                .given().param("name","Luxembourg")
+                .given().param("name", "Luxembourg")
                 .when()
                 .put("/country");
+    }
+
+    @Test
+    public void updateCountry() throws Exception {
+        Country country = CountryProvider.LUXEMBOURG();
+        RestAssuredMockMvc
+                .given().param("name", "Grand Duchy of Luxembourg")
+                .param("id", country.getId())
+                .when()
+                .post("/country");
     }
 
     @Test
     public void deleteCountry() throws Exception {
         Country save = countryService.save(CountryProvider.ICELAND());
         RestAssuredMockMvc
-                .delete("/country/"+save.getId())
+                .delete("/country/" + save.getId())
                 .then().statusCode(200);
     }
 

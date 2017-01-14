@@ -79,7 +79,7 @@ public class CountryController extends AbstractController<Country> {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @CrossOrigin
-    public ResponseEntity<Void>  delete(@PathVariable("id") String id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") String id) {
         countryService.delete(id);
         return ack();
     }

@@ -8,8 +8,7 @@ import java.util.List;
 public class Header {
 
     public static final HttpHeaders DEFAULT() {
-        HttpHeaders responseHeaders = new HttpHeaders();
-        return responseHeaders;
+        return new HttpHeaders();
     }
 
     public static final HttpHeaders DEFAULT_LIST(List list) {

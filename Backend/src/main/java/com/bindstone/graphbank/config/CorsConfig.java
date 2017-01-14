@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 @Configuration
 public class CorsConfig {
-    static Logger log = Logger.getLogger(CorsConfig.class.getName());
+    static final Logger log = Logger.getLogger(CorsConfig.class.getName());
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
