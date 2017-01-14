@@ -1,6 +1,5 @@
 package com.bindstone.graphbank.crud;
 
-import com.bindstone.graphbank.GraphbankApplication;
 import com.bindstone.graphbank.domain.DomainObject;
 import com.bindstone.graphbank.service.CrudService;
 import com.bindstone.graphbank.service.DatabaseService;
@@ -8,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +18,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = GraphbankApplication.class)
+@SpringBootTest()
 @Transactional
 public abstract class AbstractCrudTest<T extends DomainObject> {
 

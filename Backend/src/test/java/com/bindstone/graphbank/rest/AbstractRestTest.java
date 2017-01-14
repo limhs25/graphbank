@@ -1,33 +1,17 @@
 package com.bindstone.graphbank.rest;
 
 import com.bindstone.graphbank.GraphbankApplication;
-import org.junit.Before;
+import com.bindstone.graphbank.config.ServletInitializer;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
-@SpringApplicationConfiguration(classes = GraphbankApplication.class)
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@Transactional
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes = {GraphbankApplication.class, ServletInitializer.class},webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public abstract class AbstractRestTest {
 
-    protected MockMvc mvc;
+    @Value("${local.server.port}")
+    protected int port;
 
-    @Autowired
-    protected WebApplicationContext context;
-
-    @Before
-    public void setup() {
-        mvc = MockMvcBuilders
-                .webAppContextSetup(context)
-                //.apply(springSecurity())
-                .build();
-    }
 }

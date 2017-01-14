@@ -35,3 +35,13 @@ pub serve
 cd Backend
 
 mvn clean install
+
+=== External services used in the project:
+
+https://github.com/[GitHub] a web-based Git repository hosting service.
+
+https://travis-ci.org/[Travis] automated code test and building service.
+
+https://sonarqube.com/[SonarQube] Code quality service.
+
+http://www.graphenedb.com/[GraphenDB] Neo4J Cloud Graph Database.

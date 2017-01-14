@@ -3,38 +3,57 @@ package com.bindstone.graphbank.rest;
 import com.bindstone.graphbank.domain.Country;
 import com.bindstone.graphbank.provider.CountryProvider;
 import com.bindstone.graphbank.service.CountryService;
+import com.jayway.restassured.module.mockmvc.RestAssuredMockMvc;
+import com.jayway.restassured.module.mockmvc.response.MockMvcResponse;
+import io.restassured.RestAssured;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.WebApplicationContext;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @Transactional
 public class CountyRestTest extends AbstractRestTest {
-
+    //TOOO Fix Test error in allocating POrt ?!?
     @Autowired
     private CountryService countryService;
 
+    @Autowired
+    protected WebApplicationContext wac;
+
+    @Before
+    public void setup() {
+        System.out.println("Test execution port:" + port);
+        RestAssured.port = port;
+        RestAssuredMockMvc.webAppContextSetup(wac);
+        //RestAssuredMockMvc.standaloneSetup(CountryController.class);
+
+    }
+
     @Test
     public void getCountry() throws Exception {
-        mvc.perform(get("/country"))
-                .andReturn();
-
+        countryService.save(CountryProvider.ICELAND());
+        countryService.save(CountryProvider.LUXEMBOURG());
+        MockMvcResponse mockMvcResponse = RestAssuredMockMvc.get("/country");
+        RestAssuredMockMvc.get("/country");
     }
 
 
     @Test
     public void createCountry() throws Exception {
         Country country = CountryProvider.LUXEMBOURG();
-
-        MvcResult mvcResult = mvc
-                .perform(post("/country")
-                        .content(""))
-                .andReturn();
-        mvcResult.getResponse().getContentAsString();
+        RestAssuredMockMvc
+                .given().param("name","Luxembourg")
+                .when()
+                .put("/country");
     }
 
+    @Test
+    public void deleteCountry() throws Exception {
+        Country save = countryService.save(CountryProvider.ICELAND());
+        RestAssuredMockMvc
+                .delete("/country/"+save.getId());
+    }
 
 }

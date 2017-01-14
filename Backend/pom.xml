@@ -25,6 +25,8 @@
 
     <dependencies>
 
+        <!-- SPRING BOOT DEPENDENCIES -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -35,6 +37,8 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>1.1.1</version>
         </dependency>
+
+        <!-- DEPENDENCIES -->
 
         <dependency>
             <groupId>org.neo4j</groupId>
@@ -48,6 +52,8 @@
             <version>3.5</version>
         </dependency>
 
+        <!-- TEST DEPENDENCIES -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -57,6 +63,20 @@
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>3.0.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jayway.restassured</groupId>
+            <artifactId>spring-mock-mvc</artifactId>
+            <version>2.2.0</version>
             <scope>test</scope>
         </dependency>
 
