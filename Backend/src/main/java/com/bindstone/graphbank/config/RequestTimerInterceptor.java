@@ -15,7 +15,7 @@ public class RequestTimerInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
         long startTime = System.currentTimeMillis();
-        log.info(String.format("[%s] %s", request.getMethod(), request.getRequestURL().toString()));
+        log.info("[{}] {}", request.getMethod(), request.getRequestURL());
         request.setAttribute("startTime", startTime);
         //if returned false, we need to make sure 'response' is sent
         return true;
@@ -37,7 +37,7 @@ public class RequestTimerInterceptor extends HandlerInterceptorAdapter {
             throws Exception {
         long startTime = (Long) request.getAttribute("startTime");
         long time = System.currentTimeMillis() - startTime;
-        log.info(String.format("[%s] %s [%sms]", request.getMethod(), request.getRequestURL().toString(), time));
+        log.info("[{}] {} [{}ms]", request.getMethod(), request.getRequestURL(), time);
     }
 
 }
