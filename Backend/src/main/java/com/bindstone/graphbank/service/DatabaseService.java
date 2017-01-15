@@ -4,6 +4,5 @@ public interface DatabaseService {
 
     void clear();
 
-    void initData();
 }
 

@@ -49,7 +49,8 @@ public class CurrencyRestTest extends AbstractRestTest {
     public void createCurrency() throws Exception {
         Currency currency = CurrencyProvider.EURO();
         RestAssuredMockMvc
-                .given().param("name", "Luxembourg")
+                .given().param("name", "Dollar")
+                .param("iso", "USD")
                 .when()
                 .put("/currency");
     }
@@ -58,7 +59,8 @@ public class CurrencyRestTest extends AbstractRestTest {
     public void updateCurrency() throws Exception {
         Currency currency = CurrencyProvider.EURO();
         RestAssuredMockMvc
-                .given().param("name", "Grand Duchy of Luxembourg")
+                .given().param("name", "Dollar")
+                .param("iso", "USD")
                 .param("id", currency.getId())
                 .when()
                 .post("/currency");

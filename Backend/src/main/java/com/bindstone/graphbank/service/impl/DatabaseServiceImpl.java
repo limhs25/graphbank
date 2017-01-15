@@ -18,8 +18,4 @@ public class DatabaseServiceImpl implements DatabaseService {
         databaseMapper.clear();
     }
 
-    @Override
-    public void initData() {
-        databaseMapper.initData();
-    }
 }
