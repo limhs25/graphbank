@@ -95,6 +95,7 @@ public abstract class AbstractCrudTest<T extends DomainObject> {
         final T newClazz = getCrudService().insert(getTestClazz());
         final T findClazz = getCrudService().findById(newClazz.getId());
         assertEquals("Found item should be equals", newClazz, findClazz);
+        assertEquals("Found item should be equals", newClazz.hashCode(), findClazz.hashCode());
     }
 
     @Test
