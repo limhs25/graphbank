@@ -24,6 +24,5 @@ public class MoneyDrawerServiceImpl implements MoneyDrawerService {
         Map<String, Object> variables = new HashMap<String, Object>();
         //variables.put("applicant", applicant);
         runtimeService.startProcessInstanceByKey("redraw_money", variables);
-
     }
 }
