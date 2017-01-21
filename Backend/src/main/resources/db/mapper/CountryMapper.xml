@@ -1,16 +1,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bindstone.graphbank.repository.CountryMapper">
 
-    <resultMap type="com.bindstone.graphbank.domain.Country" id="CountryMap">
-        <id column="ID" property="nodeId"/>
-        <result column="UUID" property="id" jdbcType="VARCHAR"/>
-        <result column="NODE_ID" property="nodeId" jdbcType="NUMERIC"/>
-        <result column="NAME" property="name" jdbcType="VARCHAR"/>
-        <result column="CREATED" property="created" jdbcType="TIMESTAMP"/>
-        <result column="MODIFIED" property="modified" jdbcType="TIMESTAMP"/>
-    </resultMap>
+   <resultMap type="com.bindstone.graphbank.domain.Country" id="CountryMap">
+      <id column="ID" property="nodeId"/>
+      <result column="UUID" property="id" jdbcType="VARCHAR"/>
+      <result column="NODE_ID" property="nodeId" jdbcType="NUMERIC"/>
+      <result column="NAME" property="name" jdbcType="VARCHAR"/>
+      <result column="CREATED" property="created" jdbcType="TIMESTAMP"/>
+      <result column="MODIFIED" property="modified" jdbcType="TIMESTAMP"/>
+   </resultMap>
 
-    <sql id="country_result">
+   <sql id="country_result">
         id(country) AS ID,
         country.id AS UUID,
         country.name AS NAME,
@@ -18,40 +18,40 @@
         country.modified AS MODIFIED
     </sql>
 
-    <sql id="country_update">
+   <sql id="country_update">
         country.name = #{name},
         country.modified = #{modified}
     </sql>
 
-    <sql id="country_insert">
+   <sql id="country_insert">
       id: #{id},
       name: #{name},
       created: #{created},
       modified: #{modified}
     </sql>
 
-    <select id="findAll" resultMap="CountryMap">
-        MATCH (country:Country) RETURN
-        <include refid="country_result"/>
-    </select>
+   <select id="findAll" resultMap="CountryMap">
+      MATCH (country:Country) RETURN
+      <include refid="country_result"/>
+   </select>
 
-    <select id="findById" parameterType="String" resultMap="CountryMap">
-        MATCH (country:Country {id: #{id}}) RETURN
-        <include refid="country_result"/>
-    </select>
+   <select id="findById" parameterType="String" resultMap="CountryMap">
+      MATCH (country:Country {id: #{id}}) RETURN
+      <include refid="country_result"/>
+   </select>
 
-    <update id="update" parameterType='com.bindstone.graphbank.domain.Country'>
-        MERGE (country:Country {id: #{id}}) ON MATCH SET
-        <include refid="country_update"/>
-    </update>
+   <update id="update" parameterType='com.bindstone.graphbank.domain.Country'>
+      MERGE (country:Country {id: #{id}}) ON MATCH SET
+      <include refid="country_update"/>
+   </update>
 
-    <insert id='insert' parameterType='com.bindstone.graphbank.domain.Country' keyProperty="nodeId" keyColumn="ID">
-        CREATE (country:Country {
-        <include refid="country_insert"/>
-        })
-    </insert>
+   <insert id='insert' parameterType='com.bindstone.graphbank.domain.Country' keyProperty="nodeId" keyColumn="ID">
+      CREATE (country:Country {
+      <include refid="country_insert"/>
+      })
+   </insert>
 
-    <delete id="delete" parameterType='String'>
+   <delete id="delete" parameterType='String'>
         MATCH (country:Country {id: #{id}}) DELETE country
     </delete>
 

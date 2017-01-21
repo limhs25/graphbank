@@ -1,32 +1,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bindstone.graphbank.repository.AccountMapper">
 
-    <resultMap type="com.bindstone.graphbank.domain.Account" id="AccountMap">
-        <id column="ID" property="nodeId"/>
-        <result column="UUID" property="id" jdbcType="VARCHAR"/>
-        <result column="NODE_ID" property="nodeId" jdbcType="NUMERIC"/>
-        <result column="IBAN" property="iban" jdbcType="VARCHAR"/>
-        <result column="VALUE" property="value" jdbcType="NUMERIC"/>
-        <result column="CREATED" property="created" jdbcType="TIMESTAMP"/>
-        <result column="MODIFIED" property="modified" jdbcType="TIMESTAMP"/>
-    </resultMap>
+   <resultMap type="com.bindstone.graphbank.domain.Account" id="AccountMap">
+      <id column="ID" property="nodeId"/>
+      <result column="UUID" property="id" jdbcType="VARCHAR"/>
+      <result column="NODE_ID" property="nodeId" jdbcType="NUMERIC"/>
+      <result column="IBAN" property="iban" jdbcType="VARCHAR"/>
+      <result column="VALUE" property="value" jdbcType="NUMERIC"/>
+      <result column="CREATED" property="created" jdbcType="TIMESTAMP"/>
+      <result column="MODIFIED" property="modified" jdbcType="TIMESTAMP"/>
+   </resultMap>
 
-    <sql id="account_result">
-        id(account) AS ID,
-        account.id AS UUID,
-        account.iban AS IBAN,
-        account.value as VALUE,
-        account.created AS CREATED,
-        account.modified AS MODIFIED
+   <sql id="account_result">
+      id(account) AS ID,
+      account.id AS UUID,
+      account.iban AS IBAN,
+      account.value as VALUE,
+      account.created AS CREATED,
+      account.modified AS MODIFIED
     </sql>
 
-    <sql id="account_update">
-        account.iban = #{iban},
-        account.value = #{value},
-        account.modified = #{modified}
+   <sql id="account_update">
+      account.iban = #{iban},
+      account.value = #{value},
+      account.modified = #{modified}
     </sql>
 
-    <sql id="account_insert">
+   <sql id="account_insert">
       id: #{id},
       iban: #{iban},
       value: #{value},
@@ -34,28 +34,28 @@
       modified: #{modified}
     </sql>
 
-    <select id="findAll" resultMap="AccountMap">
-        MATCH (account:Account) RETURN
-        <include refid="account_result"/>
-    </select>
+   <select id="findAll" resultMap="AccountMap">
+      MATCH (account:Account) RETURN
+      <include refid="account_result"/>
+   </select>
 
-    <select id="findById" parameterType="String" resultMap="AccountMap">
-        MATCH (account:Account {id: #{id}}) RETURN
-        <include refid="account_result"/>
-    </select>
+   <select id="findById" parameterType="String" resultMap="AccountMap">
+      MATCH (account:Account {id: #{id}}) RETURN
+      <include refid="account_result"/>
+   </select>
 
-    <update id="update" parameterType='com.bindstone.graphbank.domain.Account'>
-        MERGE (account:Account {id: #{id}}) ON MATCH SET
-        <include refid="account_update"/>
-    </update>
+   <update id="update" parameterType='com.bindstone.graphbank.domain.Account'>
+      MERGE (account:Account {id: #{id}}) ON MATCH SET
+      <include refid="account_update"/>
+   </update>
 
-    <insert id='insert' parameterType='com.bindstone.graphbank.domain.Account' keyProperty="nodeId" keyColumn="ID">
-        CREATE (account:Account {
-        <include refid="account_insert"/>
-        })
-    </insert>
+   <insert id='insert' parameterType='com.bindstone.graphbank.domain.Account' keyProperty="nodeId" keyColumn="ID">
+      CREATE (account:Account {
+      <include refid="account_insert"/>
+      })
+   </insert>
 
-    <delete id="delete" parameterType='String'>
+   <delete id="delete" parameterType='String'>
         MATCH (account:Account {id: #{id}}) DELETE account
     </delete>
 

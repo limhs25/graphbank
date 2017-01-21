@@ -1,62 +1,62 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bindstone.graphbank.repository.CurrencyMapper">
 
-    <resultMap type="com.bindstone.graphbank.domain.Currency" id="CurrencyMap">
-        <id column="ID" property="nodeId"/>
-        <result column="UUID" property="id" jdbcType="VARCHAR"/>
-        <result column="NODE_ID" property="nodeId" jdbcType="NUMERIC"/>
-        <result column="NAME" property="name" jdbcType="VARCHAR"/>
-        <result column="ISO" property="iso" jdbcType="VARCHAR"/>
-        <result column="CREATED" property="created" jdbcType="TIMESTAMP"/>
-        <result column="MODIFIED" property="modified" jdbcType="TIMESTAMP"/>
-    </resultMap>
+   <resultMap type="com.bindstone.graphbank.domain.Currency" id="CurrencyMap">
+      <id column="ID" property="nodeId"/>
+      <result column="UUID" property="id" jdbcType="VARCHAR"/>
+      <result column="NODE_ID" property="nodeId" jdbcType="NUMERIC"/>
+      <result column="NAME" property="name" jdbcType="VARCHAR"/>
+      <result column="ISO" property="iso" jdbcType="VARCHAR"/>
+      <result column="CREATED" property="created" jdbcType="TIMESTAMP"/>
+      <result column="MODIFIED" property="modified" jdbcType="TIMESTAMP"/>
+   </resultMap>
 
-    <sql id="currency_result">
-        id(currency) AS ID,
-        currency.id AS UUID,
-        currency.name AS NAME,
-        currency.iso AS ISO,
-        currency.created AS CREATED,
-        currency.modified AS MODIFIED
-    </sql>
+   <sql id="currency_result">
+      id(currency) AS ID,
+      currency.id AS UUID,
+      currency.name AS NAME,
+      currency.iso AS ISO,
+      currency.created AS CREATED,
+      currency.modified AS MODIFIED
+   </sql>
 
-    <sql id="currency_update">
-        currency.name = #{name},
-        currency.iso = #{iso},
-        currency.modified = #{modified}
-    </sql>
+   <sql id="currency_update">
+      currency.name = #{name},
+      currency.iso = #{iso},
+      currency.modified = #{modified}
+   </sql>
 
-    <sql id="currency_insert">
-        id: #{id},
-        name: #{name},
-        iso: #{iso},
-        created: #{created},
-        modified: #{modified}
-    </sql>
+   <sql id="currency_insert">
+      id: #{id},
+      name: #{name},
+      iso: #{iso},
+      created: #{created},
+      modified: #{modified}
+   </sql>
 
-    <select id="findAll" resultMap="CurrencyMap">
-        MATCH (currency:Currency) RETURN
-        <include refid="currency_result"/>
-    </select>
+   <select id="findAll" resultMap="CurrencyMap">
+      MATCH (currency:Currency) RETURN
+      <include refid="currency_result"/>
+   </select>
 
-    <select id="findById" parameterType="String" resultMap="CurrencyMap">
-        MATCH (currency:Currency {id: #{id}}) RETURN
-        <include refid="currency_result"/>
-    </select>
+   <select id="findById" parameterType="String" resultMap="CurrencyMap">
+      MATCH (currency:Currency {id: #{id}}) RETURN
+      <include refid="currency_result"/>
+   </select>
 
-    <update id="update" parameterType='com.bindstone.graphbank.domain.Currency'>
-        MERGE (currency:Currency {id: #{id}}) ON MATCH SET
-        <include refid="currency_update"/>
-    </update>
+   <update id="update" parameterType='com.bindstone.graphbank.domain.Currency'>
+      MERGE (currency:Currency {id: #{id}}) ON MATCH SET
+      <include refid="currency_update"/>
+   </update>
 
-    <insert id='insert' parameterType='com.bindstone.graphbank.domain.Currency' keyProperty="nodeId" keyColumn="ID">
-        CREATE (currency:Currency {
-        <include refid="currency_insert"/>
-        })
-    </insert>
+   <insert id='insert' parameterType='com.bindstone.graphbank.domain.Currency' keyProperty="nodeId" keyColumn="ID">
+      CREATE (currency:Currency {
+      <include refid="currency_insert"/>
+      })
+   </insert>
 
-    <delete id="delete" parameterType='String'>
-        MATCH (currency:Currency {id: #{id}}) DELETE currency
-    </delete>
+   <delete id="delete" parameterType='String'>
+      MATCH (currency:Currency {id: #{id}}) DELETE currency
+   </delete>
 
 </mapper>
