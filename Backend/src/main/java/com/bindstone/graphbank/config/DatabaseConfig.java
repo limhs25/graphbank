@@ -1,5 +1,7 @@
 package com.bindstone.graphbank.config;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -11,6 +13,7 @@ import javax.sql.DataSource;
 
 @Configuration
 public class DatabaseConfig {
+    static Logger log = LoggerFactory.getLogger(DatabaseConfig.class);
 
     @Value("${spring.datasource.url}")
     private String url;
@@ -28,12 +31,14 @@ public class DatabaseConfig {
     @Primary
     @ConfigurationProperties(prefix = "datasource.primary")
     public DataSource primaryDataSource() {
+        log.info("--- INIT NEO4j ---");
+        log.info("--- DB :{}", url);
         return DataSourceBuilder
                 .create()
-                .url("jdbc:neo4j:bolt://localhost:7687")
-                .username("neo4j")
-                .password("a")
-                .driverClassName("org.neo4j.jdbc.bolt.BoltDriver")
+                .url(url)
+                .username(user)
+                .password(password)
+                .driverClassName(driver)
                 .build();
     }
 

@@ -3,6 +3,8 @@ package com.bindstone.graphbank.config;
 import org.activiti.spring.SpringAsyncExecutor;
 import org.activiti.spring.SpringProcessEngineConfiguration;
 import org.activiti.spring.boot.AbstractProcessEngineAutoConfiguration;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
@@ -16,6 +18,7 @@ import java.io.IOException;
 
 @Configuration
 public class ActivitiConfig extends AbstractProcessEngineAutoConfiguration {
+    static Logger log = LoggerFactory.getLogger(ActivitiConfig.class);
 
     @Value("${graphbank.activiti.datasource.url}")
     private String url;
@@ -46,7 +49,8 @@ public class ActivitiConfig extends AbstractProcessEngineAutoConfiguration {
     public SpringProcessEngineConfiguration springProcessEngineConfiguration(
             PlatformTransactionManager transactionManager,
             SpringAsyncExecutor springAsyncExecutor) throws IOException {
-
+        log.info("--- INIT ACTIVITI ---");
+        log.info("--- DB :{}", url);
         return baseSpringProcessEngineConfiguration(
                 activitiDataSource(),
                 transactionManager,
