@@ -1,4 +1,4 @@
-package com.bindstone.graphbank.config;
+package com.bindstone.graphbank.config.interceptor;
 
 
 import org.slf4j.Logger;

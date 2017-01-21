@@ -1,4 +1,4 @@
-package com.bindstone.graphbank.config;
+package com.bindstone.graphbank.config.initializer;
 
 import com.bindstone.graphbank.GraphbankApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;

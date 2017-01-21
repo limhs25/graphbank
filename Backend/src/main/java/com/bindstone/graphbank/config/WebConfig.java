@@ -1,5 +1,6 @@
 package com.bindstone.graphbank.config;
 
+import com.bindstone.graphbank.config.interceptor.RequestTimerInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;

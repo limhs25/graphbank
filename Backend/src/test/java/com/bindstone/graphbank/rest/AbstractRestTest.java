@@ -1,7 +1,7 @@
 package com.bindstone.graphbank.rest;
 
 import com.bindstone.graphbank.GraphbankApplication;
-import com.bindstone.graphbank.config.ServletInitializer;
+import com.bindstone.graphbank.config.initializer.ServletInitializer;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
