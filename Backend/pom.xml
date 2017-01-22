@@ -1,139 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>com.bindstone.graphbank</groupId>
-    <artifactId>graphbank_backend</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>com.bindstone.graphbank</groupId>
+   <artifactId>graphbank_backend</artifactId>
+   <version>0.0.1-SNAPSHOT</version>
+   <packaging>jar</packaging>
 
-    <name>graphbank_backend</name>
-    <description>Demo project for Spring Boot</description>
+   <name>graphbank_backend</name>
+   <description>Demo project for Spring Boot</description>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.3.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+   <parent>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>1.4.3.RELEASE</version>
+      <relativePath/> <!-- lookup parent from repository -->
+   </parent>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-    </properties>
+   <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+      <java.version>1.8</java.version>
+   </properties>
 
-    <dependencies>
+   <dependencies>
 
-        <!-- SPRING BOOT DEPENDENCIES -->
+      <!-- SPRING BOOT DEPENDENCIES -->
 
-        <dependency>
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-web</artifactId>
+      </dependency>
+
+      <dependency>
+         <groupId>org.mybatis.spring.boot</groupId>
+         <artifactId>mybatis-spring-boot-starter</artifactId>
+         <version>1.1.1</version>
+      </dependency>
+
+      <!-- DEPENDENCIES -->
+
+      <dependency>
+         <groupId>org.neo4j</groupId>
+         <artifactId>neo4j-jdbc-bolt</artifactId>
+         <version>3.0.2.bindstone</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.apache.commons</groupId>
+         <artifactId>commons-lang3</artifactId>
+         <version>3.5</version>
+      </dependency>
+
+      <dependency>
+         <groupId>org.activiti</groupId>
+         <artifactId>spring-boot-starter-basic</artifactId>
+         <version>5.17.0</version>
+      </dependency>
+
+      <dependency>
+         <groupId>com.h2database</groupId>
+         <artifactId>h2</artifactId>
+         <version>1.4.193</version>
+      </dependency>
+
+      <!-- TEST DEPENDENCIES -->
+
+      <dependency>
+         <groupId>org.springframework.boot</groupId>
+         <artifactId>spring-boot-starter-test</artifactId>
+         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>com.jayway.jsonpath</groupId>
+         <artifactId>json-path</artifactId>
+         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>io.rest-assured</groupId>
+         <artifactId>rest-assured</artifactId>
+         <version>3.0.1</version>
+         <scope>test</scope>
+      </dependency>
+
+      <dependency>
+         <groupId>com.jayway.restassured</groupId>
+         <artifactId>spring-mock-mvc</artifactId>
+         <version>2.2.0</version>
+         <scope>test</scope>
+      </dependency>
+
+   </dependencies>
+
+   <build>
+      <plugins>
+         <plugin>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+         </plugin>
 
-        <dependency>
-            <groupId>org.mybatis.spring.boot</groupId>
-            <artifactId>mybatis-spring-boot-starter</artifactId>
-            <version>1.1.1</version>
-        </dependency>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-install-plugin</artifactId>
+            <version>2.5.2</version>
+            <executions>
+               <execution>
+                  <id>install-ojdbc7</id>
+                  <goals>
+                     <goal>install-file</goal>
+                  </goals>
+                  <phase>process-resources</phase>
+                  <configuration>
+                     <groupId>org.neo4j</groupId>
+                     <artifactId>neo4j-jdbc-bolt</artifactId>
+                     <version>3.0.2.bindstone</version>
+                     <packaging>jar</packaging>
+                     <file>src/main/lib/neo4j-jdbc-bolt-3.0.2.bindstone.jar</file>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
 
-        <!-- DEPENDENCIES -->
-
-        <dependency>
-            <groupId>org.neo4j</groupId>
-            <artifactId>neo4j-jdbc-bolt</artifactId>
-            <version>3.0.2.bindstone</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.5</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.activiti</groupId>
-            <artifactId>spring-boot-starter-basic</artifactId>
-            <version>5.17.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.193</version>
-        </dependency>
-
-        <!-- TEST DEPENDENCIES -->
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jayway.jsonpath</groupId>
-            <artifactId>json-path</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>3.0.1</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jayway.restassured</groupId>
-            <artifactId>spring-mock-mvc</artifactId>
-            <version>2.2.0</version>
-            <scope>test</scope>
-        </dependency>
-
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.2</version>
-                <executions>
-                    <execution>
-                        <id>install-ojdbc7</id>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                        <configuration>
-                            <groupId>org.neo4j</groupId>
-                            <artifactId>neo4j-jdbc-bolt</artifactId>
-                            <version>3.0.2.bindstone</version>
-                            <packaging>jar</packaging>
-                            <file>src/main/lib/neo4j-jdbc-bolt-3.0.2.bindstone.jar</file>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!--
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>
-                <configuration>
-                    <skipTests>true</skipTests>
-                </configuration>
-            </plugin>
-            -->
-        </plugins>
-    </build>
+         <!--
+         <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-surefire-plugin</artifactId>
+             <version>2.19.1</version>
+             <configuration>
+                 <skipTests>true</skipTests>
+             </configuration>
+         </plugin>
+         -->
+      </plugins>
+   </build>
 
 </project>
