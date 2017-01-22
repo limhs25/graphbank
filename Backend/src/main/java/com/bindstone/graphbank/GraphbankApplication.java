@@ -17,9 +17,11 @@ import org.springframework.context.annotation.Configuration;
 public class GraphbankApplication {
     static Logger log = LoggerFactory.getLogger(GraphbankApplication.class);
 
+    public GraphbankApplication() {
+        super();
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(GraphbankApplication.class, args);
     }
-
-
 }
