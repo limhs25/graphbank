@@ -48,7 +48,7 @@ public abstract class AbstractCrudTest<T extends DomainObject> {
         assertNotNull("List should be generated", clazzes);
         assertEquals("List should be still empty", 0, clazzes.size());
 
-        T addedClazz = getCrudService().insert(getTestClazz());
+        T addedClazz = getCrudService().save(getTestClazz());
         assertNotNull("Object not returned by insert", addedClazz);
         assertNotNull("ID not set by insert", addedClazz.getId());
 
