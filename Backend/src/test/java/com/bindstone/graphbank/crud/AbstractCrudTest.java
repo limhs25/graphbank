@@ -14,8 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest()
@@ -35,6 +37,8 @@ public abstract class AbstractCrudTest<T extends DomainObject> {
         T addedClazz = getCrudService().insert(getTestClazz());
         assertNotNull("Object not returned by insert", addedClazz);
         assertNotNull("ID not set by insert", addedClazz.getId());
+        assertFalse("Validate equals condition NULL", addedClazz.equals(null));
+        assertTrue("Validate equals condition object=object", addedClazz.equals(addedClazz));
     }
 
     @Test
