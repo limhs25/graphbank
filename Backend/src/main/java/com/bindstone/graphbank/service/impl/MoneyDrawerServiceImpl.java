@@ -14,7 +14,7 @@ import java.util.Map;
 @Service
 @Transactional
 public class MoneyDrawerServiceImpl implements MoneyDrawerService {
-    static Logger log = LoggerFactory.getLogger(MoneyDrawerServiceImpl.class);
+    private static Logger log = LoggerFactory.getLogger(MoneyDrawerServiceImpl.class);
 
     @Autowired
     private RuntimeService runtimeService;

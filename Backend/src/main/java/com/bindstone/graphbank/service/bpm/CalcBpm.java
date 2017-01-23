@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CalcBpm implements JavaDelegate {
-    static Logger log = LoggerFactory.getLogger(CalcBpm.class);
+    private static Logger log = LoggerFactory.getLogger(CalcBpm.class);
     //http://stackoverflow.com/questions/36599614/alfresco-activiti-java-delegates-show-process-variable-to-worflow-form
 
     @Override

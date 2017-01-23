@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class AccountServiceImpl extends CrudServiceImpl<Account> implements AccountService {
 
     @Autowired
-    AccountMapper accountMapper;
+    private AccountMapper accountMapper;
 
     @Override
     public CrudMapper getMapper() {

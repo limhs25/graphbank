@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @MapperScan(basePackages = "com.bindstone.graphbank.repository")
 public class GraphbankApplication {
-    static Logger log = LoggerFactory.getLogger(GraphbankApplication.class);
+    private static Logger log = LoggerFactory.getLogger(GraphbankApplication.class);
 
     public GraphbankApplication() {
         super();

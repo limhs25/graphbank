@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class DatabaseServiceImpl implements DatabaseService {
 
     @Autowired
-    DatabaseMapper databaseMapper;
+    private DatabaseMapper databaseMapper;
 
     @Override
     public void clear() {

@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class RequestTimerInterceptor extends HandlerInterceptorAdapter {
-    static Logger log = LoggerFactory.getLogger("Rest Request");
+    private static Logger log = LoggerFactory.getLogger("Rest Request");
 
     @Override
     public boolean preHandle(HttpServletRequest request,

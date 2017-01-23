@@ -1,20 +1,9 @@
 <h1>Country</h1>
 
-<input [(ngModel)]="countryName" placeholder="name"/>
+<md-input-container>
+    <material-input [(ngModel)]="countryName" label="Country Name" floatingLabel autoFocus
+                    maxlength="100"></material-input>
+    <!--<md-hint align="end">{{countryName.value.length}} / 100</md-hint>-->
+</md-input-container>
 
-<button class="Add" (click)="addCountry()">Add</button>
-
-<!--
-<material-input #myInput
-                label="Your name"
-                floatingLabel
-                autoFocus>
-</material-input>
--->
-<!--
-<material-button raised
-                 (trigger)="myDialog.open()"
-                 class="blue">
-    Say Hello
-</material-button>
--->
+<material-button raised (trigger)="addCountry()" class="blue">Add</material-button>

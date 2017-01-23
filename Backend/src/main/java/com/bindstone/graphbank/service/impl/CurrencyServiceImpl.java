@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CurrencyServiceImpl extends CrudServiceImpl<Currency> implements CurrencyService {
 
     @Autowired
-    CurrencyMapper currencyMapper;
+    private CurrencyMapper currencyMapper;
 
     @Override
     public CrudMapper getMapper() {

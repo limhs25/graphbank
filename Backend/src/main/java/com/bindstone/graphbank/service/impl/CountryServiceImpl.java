@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class CountryServiceImpl extends CrudServiceImpl<Country> implements CountryService {
 
     @Autowired
-    CountryMapper countryMapper;
+    private CountryMapper countryMapper;
 
     @Override
     public CrudMapper getMapper() {

@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 @Configuration
 public class DatabaseConfig {
-    static Logger log = LoggerFactory.getLogger(DatabaseConfig.class);
+    private static Logger log = LoggerFactory.getLogger(DatabaseConfig.class);
 
     @Value("${spring.datasource.url}")
     private String url;

@@ -18,7 +18,7 @@ import java.io.IOException;
 
 @Configuration
 public class ActivitiConfig extends AbstractProcessEngineAutoConfiguration {
-    static Logger log = LoggerFactory.getLogger(ActivitiConfig.class);
+    private static Logger log = LoggerFactory.getLogger(ActivitiConfig.class);
 
     @Value("${graphbank.activiti.datasource.url}")
     private String url;

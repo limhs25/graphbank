@@ -1,6 +1,6 @@
 <h1>Country List</h1>
 
-<table>
+<md-data-table>
     <thead>
     <th>Id</th>
     <th>Name</th>
@@ -16,11 +16,11 @@
         <td>{{ country.created }}</td>
         <td>{{ country.modified }}</td>
         <td>
-            <button class="Get" (click)="deleteCountry(country.id)">Delete</button>
+            <material-button raised (trigger)="deleteCountry(country.id)" class="blue">Delete</material-button>
         </td>
         <td>
-            <button class="Get" (click)="getCountry(country.id)">Get</button>
+            <material-button raised (trigger)="getCountry(country.id)" class="blue">Get</material-button>
         </td>
     </tr>
     </tbody>
-</table>
+</md-data-table>
