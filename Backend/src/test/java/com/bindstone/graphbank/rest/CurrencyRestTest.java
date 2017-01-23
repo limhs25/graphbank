@@ -6,6 +6,7 @@ import com.bindstone.graphbank.service.CurrencyService;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.module.mockmvc.RestAssuredMockMvc;
 import io.restassured.RestAssured;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class CurrencyRestTest extends AbstractRestTest {
 
     @Test
     public void getCurrency() throws Exception {
+        Assert.assertNotNull("Service validation", currencyService);
         currencyService.save(CurrencyProvider.EURO());
         currencyService.save(CurrencyProvider.DOLLAR());
         RestAssuredMockMvc
@@ -39,6 +41,7 @@ public class CurrencyRestTest extends AbstractRestTest {
 
     @Test
     public void getByIdCurrency() throws Exception {
+        Assert.assertNotNull("Service validation", currencyService);
         Currency save = currencyService.save(CurrencyProvider.EURO());
         RestAssuredMockMvc
                 .get(ROOT + save.getId())
@@ -47,6 +50,7 @@ public class CurrencyRestTest extends AbstractRestTest {
 
     @Test
     public void createCurrency() throws Exception {
+        Assert.assertNotNull("Service validation", currencyService);
         Currency currency = CurrencyProvider.EURO();
         RestAssuredMockMvc
                 .given().contentType(ContentType.JSON).body(currency)
@@ -57,6 +61,7 @@ public class CurrencyRestTest extends AbstractRestTest {
 
     @Test
     public void updateCurrency() throws Exception {
+        Assert.assertNotNull("Service validation", currencyService);
         Currency currency = CurrencyProvider.EURO();
         currencyService.save(currency);
         RestAssuredMockMvc
@@ -68,6 +73,7 @@ public class CurrencyRestTest extends AbstractRestTest {
 
     @Test
     public void deleteCurrency() throws Exception {
+        Assert.assertNotNull("Service validation", currencyService);
         Currency save = currencyService.save(CurrencyProvider.DOLLAR());
         RestAssuredMockMvc
                 .delete(ROOT + save.getId())

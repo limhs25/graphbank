@@ -6,6 +6,7 @@ import com.bindstone.graphbank.service.CountryService;
 import com.jayway.restassured.http.ContentType;
 import com.jayway.restassured.module.mockmvc.RestAssuredMockMvc;
 import io.restassured.RestAssured;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ public class CountyRestTest extends AbstractRestTest {
 
     @Test
     public void getCountry() throws Exception {
+        Assert.assertNotNull("Service validation", countryService);
         countryService.save(CountryProvider.ICELAND());
         countryService.save(CountryProvider.LUXEMBOURG());
         RestAssuredMockMvc
@@ -40,6 +42,7 @@ public class CountyRestTest extends AbstractRestTest {
 
     @Test
     public void getByIdCountry() throws Exception {
+        Assert.assertNotNull("Service validation", countryService);
         Country save = countryService.save(CountryProvider.LUXEMBOURG());
         RestAssuredMockMvc
                 .get(ROOT + save.getId())
@@ -48,6 +51,7 @@ public class CountyRestTest extends AbstractRestTest {
 
     @Test
     public void createCountry() throws Exception {
+        Assert.assertNotNull("Service validation", countryService);
         Country country = CountryProvider.LUXEMBOURG();
         RestAssuredMockMvc
                 .given().contentType(ContentType.JSON).body(country)
@@ -58,6 +62,7 @@ public class CountyRestTest extends AbstractRestTest {
 
     @Test
     public void updateCountry() throws Exception {
+        Assert.assertNotNull("Service validation", countryService);
         Country country = CountryProvider.LUXEMBOURG();
         countryService.save(country);
         RestAssuredMockMvc
@@ -69,6 +74,7 @@ public class CountyRestTest extends AbstractRestTest {
 
     @Test
     public void deleteCountry() throws Exception {
+        Assert.assertNotNull("Service validation", countryService);
         Country save = countryService.save(CountryProvider.ICELAND());
         RestAssuredMockMvc
                 .delete(ROOT + save.getId())
