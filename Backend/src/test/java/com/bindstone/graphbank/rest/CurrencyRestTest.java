@@ -22,7 +22,7 @@ public class CurrencyRestTest extends AbstractRestTest {
     private CurrencyService currencyService;
 
     @Before
-    public void setup() {
+    public void tearDown() {
         System.out.println("Test execution port:" + port);
         RestAssured.port = port;
         RestAssuredMockMvc.webAppContextSetup(wac);

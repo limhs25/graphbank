@@ -38,7 +38,7 @@ public abstract class AbstractCrudTest<T extends DomainObject> {
         assertNotNull("Object not returned by insert", addedClazz);
         assertNotNull("ID not set by insert", addedClazz.getId());
         assertFalse("Validate equals condition NULL", addedClazz.equals(null));
-        assertFalse("Validate equals condition different classes", addedClazz.equals(""));
+        assertFalse("Validate equals condition different classes", addedClazz.equals(new String()));
         assertTrue("Validate equals condition object=object", addedClazz.equals(addedClazz));
     }
 

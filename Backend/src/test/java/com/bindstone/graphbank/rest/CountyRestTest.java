@@ -22,7 +22,7 @@ public class CountyRestTest extends AbstractRestTest {
     private CountryService countryService;
 
     @Before
-    public void setup() {
+    public void tearDown() {
         System.out.println("Test execution port:" + port);
         RestAssured.port = port;
         RestAssuredMockMvc.webAppContextSetup(wac);
