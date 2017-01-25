@@ -2,8 +2,8 @@
 
 image:https://travis-ci.org/bindstone/graphbank.svg?branch=master["Build Status", link="https://travis-ci.org/bindstone/graphbank"]
 image:https://api.codacy.com/project/badge/Grade/ed89c7d8d8a6421f811758f4ac45057f["Codacy code quality", link="https://www.codacy.com/app/bindstone/graphbank?utm_source=github.com&utm_medium=referral&utm_content=bindstone/graphbank&utm_campaign=Badge_Grade"]
-image:https://img.shields.io/badge/license-Apache%202-blue.svg[]
-
+image:https://coveralls.io/repos/github/bindstone/graphbank/badge.svg[]
+image:https://img.shields.io/badge/license-Apache%202-blue.svg["Licence",link="https://github.com/bindstone/graphbank/blob/master/license.txt"]
 
 
 https://sonarqube.com/dashboard/index?id=com.bindstone.graphbank%3Agraphbank_backend[Sonar Report]
@@ -46,7 +46,7 @@ https://github.com/[GitHub] a web-based Git repository hosting service.
 
 https://travis-ci.org/[Travis] automated code test and building service.
 
-https://sonarqube.com/[SonarQube], https://www.codacy.com/[Codacy] Code quality service
+https://sonarqube.com/[SonarQube], https://www.codacy.com/[Codacy], https://coveralls.io/[Coveralls] Code quality service
 
 http://www.graphenedb.com/[GraphenDB] Neo4J Cloud Graph Database.
 
