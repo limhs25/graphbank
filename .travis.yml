@@ -10,7 +10,7 @@ addons:
     token:
       secure: ${sonar_token}
 script:
-  - mvn clean package org.jacoco:jacoco-maven-plugin:prepare-agent sonar:sonar -Dspring.profiles.active=travis -DrepoToken=${coveralls_token}
+  - mvn clean package org.jacoco:jacoco-maven-plugin:prepare-agent cobertura:cobertura sonar:sonar jacoco:report coveralls:report -Dspring.profiles.active=travis -DrepoToken=${coveralls_token}
 cache:
   directories:
     - '$HOME/.m2/repository'
