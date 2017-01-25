@@ -154,6 +154,10 @@
             <version>4.3.0</version>
             <configuration>
                <sourceEncoding>UTF8</sourceEncoding>
+               <relativeReportDirs>
+                  <relativeReportDir>/jacoco-it</relativeReportDir>
+                  <relativeReportDir>/jacoco-ut</relativeReportDir>
+               </relativeReportDirs>
             </configuration>
          </plugin>
          <!--
