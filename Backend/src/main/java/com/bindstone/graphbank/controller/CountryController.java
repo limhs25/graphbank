@@ -24,7 +24,7 @@ public class CountryController extends AbstractController<Country> {
     private CountryService countryService;
 
     @Autowired
-    private CountryCurrencyImportService cri;
+    private CountryCurrencyImportService importService;
 
     @Autowired
     private DatabaseService dbs;
@@ -48,8 +48,6 @@ public class CountryController extends AbstractController<Country> {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Country> findById(@PathVariable("id") String id) {
-        dbs.clear();
-        cri.load();
         Country entity = countryService.findById(id);
         return ackEntity(entity);
     }
@@ -80,6 +78,20 @@ public class CountryController extends AbstractController<Country> {
         Country entity = countryService.insert(input);
         return ackEntity(entity);
     }
+
+    /**
+     * UPDATE COUNTRY
+     *
+     * @param input
+     * @return
+     */
+    @RequestMapping(value = "/loadCountries", method = RequestMethod.POST)
+    @CrossOrigin
+    public ResponseEntity<Void> loadCountries(@RequestBody Country input) {
+        importService.load();
+        return ack();
+    }
+
 
     /**
      * DELTE COUNTRY
