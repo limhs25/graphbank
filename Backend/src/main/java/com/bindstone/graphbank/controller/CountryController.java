@@ -3,6 +3,8 @@ package com.bindstone.graphbank.controller;
 
 import com.bindstone.graphbank.domain.Country;
 import com.bindstone.graphbank.service.CountryService;
+import com.bindstone.graphbank.service.DatabaseService;
+import com.bindstone.graphbank.service.data.CountryCurrencyImportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -20,6 +22,12 @@ public class CountryController extends AbstractController<Country> {
 
     @Autowired
     private CountryService countryService;
+
+    @Autowired
+    private CountryCurrencyImportService cri;
+
+    @Autowired
+    private DatabaseService dbs;
 
     /**
      * GET ALL
@@ -40,6 +48,8 @@ public class CountryController extends AbstractController<Country> {
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<Country> findById(@PathVariable("id") String id) {
+        dbs.clear();
+        cri.load();
         Country entity = countryService.findById(id);
         return ackEntity(entity);
     }

@@ -9,9 +9,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class Country extends AbstractNode {
     private String name;
 
-    /**
-     * BUILDER
-     */
+    private Currency currency;
+
     public static Builder getBuilder(String name) {
         return new Builder(name);
     }
@@ -22,6 +21,14 @@ public class Country extends AbstractNode {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
     }
 
     @Override
@@ -48,6 +55,10 @@ public class Country extends AbstractNode {
                 .toHashCode();
     }
 
+    /**********************************************************************************
+     * BUILDER
+     */
+
     public static class Builder {
 
         private Country built;
@@ -55,6 +66,11 @@ public class Country extends AbstractNode {
         public Builder(String name) {
             built = new Country();
             built.name = name;
+        }
+
+        public Builder currency(Currency currency) {
+            built.currency = currency;
+            return this;
         }
 
         public Country build() {

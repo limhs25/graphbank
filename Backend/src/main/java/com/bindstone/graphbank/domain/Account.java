@@ -10,9 +10,6 @@ public class Account extends AbstractNode {
     private String iban;
     private double value;
 
-    /**
-     * BUILDER
-     */
     public static Builder getBuilder(String name) {
         return new Builder(name);
     }
@@ -56,6 +53,10 @@ public class Account extends AbstractNode {
                 .append(iban)
                 .toHashCode();
     }
+
+    /**********************************************************************************
+     * BUILDER
+     */
 
     public static class Builder {
 

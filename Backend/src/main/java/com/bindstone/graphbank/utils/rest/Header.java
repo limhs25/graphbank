@@ -1,4 +1,4 @@
-package com.bindstone.graphbank.utils;
+package com.bindstone.graphbank.utils.rest;
 
 import com.bindstone.graphbank.domain.AbstractNode;
 import org.springframework.http.HttpHeaders;

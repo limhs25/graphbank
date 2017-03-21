@@ -13,6 +13,7 @@ class RestCrudGenerator extends GeneratorForAnnotation<RestCrud> {
   @override
   Future<String> generateForAnnotatedElement(Element element,
       RestCrud annotation, BuildStep buildStep) async {
+    var entity = annotation.entityClass;
     var classElement = element as ClassElement;
     var className = classElement.name;
 
@@ -21,21 +22,21 @@ class RestCrudGenerator extends GeneratorForAnnotation<RestCrud> {
     buffer.writeln('abstract class _\$${className}_rest_crud {');
     buffer.writeln('//');
     buffer.writeln(
-        '// **************************************************************************');
+        '// ***********************************************************************');
     buffer.writeln('// * OVERRIDE THE FOLLOWING METHODES');
     buffer.writeln(
-        '// **************************************************************************');
+        '// ***********************************************************************');
     buffer.writeln('');
     buffer.writeln('BrowserClient getBrowserClient();');
     buffer.writeln('String getUrl();');
     buffer.writeln('');
     buffer.writeln(
-        '// **************************************************************************');
+        '// ***********************************************************************');
     buffer.writeln('// * Get ALL');
     buffer.writeln(
-        '// **************************************************************************');
+        '// ***********************************************************************');
     buffer.writeln('');
-    buffer.writeln('Future<List<Country>> getAll() async {');
+    buffer.writeln('Future<List<${className}>> getAll() async {');
     buffer.writeln('  try {');
     buffer.writeln('    print("${className}:FindAll");');
     buffer.writeln(
@@ -48,12 +49,12 @@ class RestCrudGenerator extends GeneratorForAnnotation<RestCrud> {
     buffer.writeln('}');
     buffer.writeln('');
     buffer.writeln(
-        '// **************************************************************************');
+        '// ***********************************************************************');
     buffer.writeln('// * Find BY ID');
     buffer.writeln(
-        '// **************************************************************************');
+        '// ***********************************************************************');
     buffer.writeln('');
-    buffer.writeln('Future<Country> findById(String id) async {');
+    buffer.writeln('Future<${className}> findById(String id) async {');
     buffer.writeln('  try {');
     buffer.writeln('    print("${className}:FindById \$id");');
     buffer.writeln(
@@ -66,15 +67,18 @@ class RestCrudGenerator extends GeneratorForAnnotation<RestCrud> {
     buffer.writeln('}');
     buffer.writeln('');
     buffer.writeln(
-        '// **************************************************************************');
+        '// ***********************************************************************');
     buffer.writeln('// * Save Object');
     buffer.writeln(
-        '// **************************************************************************');
+        '// ***********************************************************************');
     buffer.writeln('');
-    buffer.writeln('Future<Country> save(Country country) async {');
+    buffer.writeln('Future<${entity}> save(${entity} ${entity
+        .toLowerCase()}) async {');
     buffer.writeln('  try {');
-    buffer.writeln('    print("${className}:Save \$country");');
-    buffer.writeln('    String jsonData = JSON.encode(country);');
+    buffer.writeln(
+        '    print("${className}:Save ${entity.toLowerCase()}");');
+    buffer.writeln(
+        '    String jsonData = JSON.encode(${entity.toLowerCase()});');
     buffer.writeln('    Map<String, String> header = new Map();');
     buffer.writeln('    final response = await getBrowserClient().put(');
     buffer.writeln('        getUrl(),');
@@ -89,10 +93,10 @@ class RestCrudGenerator extends GeneratorForAnnotation<RestCrud> {
     buffer.writeln('}');
     buffer.writeln('');
     buffer.writeln(
-        '// **************************************************************************');
+        '// ***********************************************************************');
     buffer.writeln('// * Delete BY ID');
     buffer.writeln(
-        '// **************************************************************************');
+        '// ***********************************************************************');
     buffer.writeln('');
     buffer.writeln('Future delete(String id) async {');
     buffer.writeln('  try {');
@@ -105,44 +109,43 @@ class RestCrudGenerator extends GeneratorForAnnotation<RestCrud> {
     buffer.writeln('}');
     buffer.writeln('');
     buffer.writeln(
-        '// **************************************************************************');
+        '// ***********************************************************************');
     buffer.writeln('// * Extract List');
     buffer.writeln(
-        '// **************************************************************************');
+        '// ***********************************************************************');
     buffer.writeln('');
     buffer.writeln('dynamic extractDataList(Response res) {');
     buffer.writeln('  List body = JSON.decode(res.body);');
     buffer.writeln('');
     buffer.writeln('  body.forEach((value) => print(value));');
-    buffer.writeln('  List<Country> countries =');
-    buffer.writeln('  body.map((value) => new Country.fromJson(value))');
+    buffer.writeln('  List<${className}> ${className.toLowerCase()}s =');
+    buffer.writeln('  body.map((value) => new ${entity}.fromJson(value))');
     buffer.writeln('      .toList();');
     buffer.writeln('');
-    buffer.writeln('  return countries;');
+    buffer.writeln('  return ${className.toLowerCase()}s;');
     buffer.writeln('}');
     buffer.writeln('');
     buffer.writeln(
-        '// **************************************************************************');
+        '// ***********************************************************************');
     buffer.writeln('// * Extract Object');
     buffer.writeln(
-        '// **************************************************************************');
+        '// ***********************************************************************');
     buffer.writeln('');
-    buffer.writeln('Country extractData(Response res) {');
-    buffer.writeln('  Country body = JSON.decode(res.body);');
+    buffer.writeln('${className} extractData(Response res) {');
+    buffer.writeln('  ${className} body = JSON.decode(res.body);');
     buffer.writeln('  return body;');
     buffer.writeln('}');
     buffer.writeln('');
     buffer.writeln(
-        '// **************************************************************************');
+        '// ***********************************************************************');
     buffer.writeln('// EXCEPTION Handlers:');
     buffer.writeln(
-        '// **************************************************************************');
+        '// ***********************************************************************');
     buffer.writeln('');
     buffer.writeln('Exception handleError(dynamic e) {');
     buffer.writeln('  print("${className}:Exception \$e");');
     buffer.writeln('  return new Exception(\'${className}: \$e\');');
     buffer.writeln('} ');
-
     buffer.writeln('');
     buffer.writeln('}');
     return buffer.toString();

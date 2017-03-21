@@ -1,9 +1,11 @@
 <h1>Country</h1>
 
-<md-input-container>
-    <material-input [(ngModel)]="countryName" label="Country Name" floatingLabel autoFocus
-                    maxlength="100"></material-input>
-    <!--<md-hint align="end">{{countryName.value.length}} / 100</md-hint>-->
-</md-input-container>
+<div>
+    <material-input [(ngModel)]="countryName"
+                    label="Country Name"
+                    floatingLabel autoFocus
+                    maxlength="100">
+    </material-input>
+</div>
 
-<material-button raised (trigger)="addCountry()" class="blue">Add</material-button>
+<material-button raised (trigger)="addCountry()">Add</material-button>

@@ -3,21 +3,21 @@
 
    <resultMap type="com.bindstone.graphbank.domain.Currency" id="CurrencyMap">
       <id column="ID" property="nodeId"/>
-      <result column="UUID" property="id" jdbcType="VARCHAR"/>
-      <result column="NODE_ID" property="nodeId" jdbcType="NUMERIC"/>
-      <result column="NAME" property="name" jdbcType="VARCHAR"/>
-      <result column="ISO" property="iso" jdbcType="VARCHAR"/>
-      <result column="CREATED" property="created" jdbcType="TIMESTAMP"/>
-      <result column="MODIFIED" property="modified" jdbcType="TIMESTAMP"/>
+      <result column="CURRENCY_UUID" property="id" jdbcType="VARCHAR"/>
+      <result column="CURRENCY_NODE_ID" property="nodeId" jdbcType="NUMERIC"/>
+      <result column="CURRENCY_NAME" property="name" jdbcType="VARCHAR"/>
+      <result column="CURRENCY_ISO" property="iso" jdbcType="VARCHAR"/>
+      <result column="CURRENCY_CREATED" property="created" jdbcType="TIMESTAMP"/>
+      <result column="CURRENCY_MODIFIED" property="modified" jdbcType="TIMESTAMP"/>
    </resultMap>
 
    <sql id="currency_result">
-      id(currency) AS ID,
-      currency.id AS UUID,
-      currency.name AS NAME,
-      currency.iso AS ISO,
-      currency.created AS CREATED,
-      currency.modified AS MODIFIED
+      id(currency) AS CURRENCY_ID,
+      currency.id AS CURRENCY_UUID,
+      currency.name AS CURRENCY_NAME,
+      currency.iso AS CURRENCY_ISO,
+      currency.created AS CURRENCY_CREATED,
+      currency.modified AS CURRENCY_MODIFIED
    </sql>
 
    <sql id="currency_update">

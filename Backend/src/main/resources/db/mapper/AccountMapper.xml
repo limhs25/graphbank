@@ -3,21 +3,21 @@
 
    <resultMap type="com.bindstone.graphbank.domain.Account" id="AccountMap">
       <id column="ID" property="nodeId"/>
-      <result column="UUID" property="id" jdbcType="VARCHAR"/>
-      <result column="NODE_ID" property="nodeId" jdbcType="NUMERIC"/>
-      <result column="IBAN" property="iban" jdbcType="VARCHAR"/>
-      <result column="VALUE" property="value" jdbcType="NUMERIC"/>
-      <result column="CREATED" property="created" jdbcType="TIMESTAMP"/>
-      <result column="MODIFIED" property="modified" jdbcType="TIMESTAMP"/>
+      <result column="ACCOUNT_UUID" property="id" jdbcType="VARCHAR"/>
+      <result column="ACCOUNT_NODE_ID" property="nodeId" jdbcType="NUMERIC"/>
+      <result column="ACCOUNT_IBAN" property="iban" jdbcType="VARCHAR"/>
+      <result column="ACCOUNT_VALUE" property="value" jdbcType="NUMERIC"/>
+      <result column="ACCOUNT_CREATED" property="created" jdbcType="TIMESTAMP"/>
+      <result column="ACCOUNT_MODIFIED" property="modified" jdbcType="TIMESTAMP"/>
    </resultMap>
 
    <sql id="account_result">
-      id(account) AS ID,
-      account.id AS UUID,
-      account.iban AS IBAN,
-      account.value as VALUE,
-      account.created AS CREATED,
-      account.modified AS MODIFIED
+      id(account) AS ACCOUNT_ID,
+      account.id AS ACCOUNT_UUID,
+      account.iban AS ACCOUNT_IBAN,
+      account.value as ACCOUNT_VALUE,
+      account.created AS ACCOUNT_CREATED,
+      account.modified AS ACCOUNT_MODIFIED
     </sql>
 
    <sql id="account_update">

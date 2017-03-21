@@ -1,7 +1,7 @@
 package com.bindstone.graphbank.controller;
 
 import com.bindstone.graphbank.domain.AbstractNode;
-import com.bindstone.graphbank.utils.Header;
+import com.bindstone.graphbank.utils.rest.Header;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 

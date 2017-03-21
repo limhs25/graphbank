@@ -2,20 +2,22 @@
 <mapper namespace="com.bindstone.graphbank.repository.CountryMapper">
 
    <resultMap type="com.bindstone.graphbank.domain.Country" id="CountryMap">
-      <id column="ID" property="nodeId"/>
-      <result column="UUID" property="id" jdbcType="VARCHAR"/>
-      <result column="NODE_ID" property="nodeId" jdbcType="NUMERIC"/>
-      <result column="NAME" property="name" jdbcType="VARCHAR"/>
-      <result column="CREATED" property="created" jdbcType="TIMESTAMP"/>
-      <result column="MODIFIED" property="modified" jdbcType="TIMESTAMP"/>
+      <id column="COUNTRY_ID" property="nodeId"/>
+      <result column="COUNTRY_UUID" property="id" jdbcType="VARCHAR"/>
+      <result column="COUNRY_NODE_ID" property="nodeId" jdbcType="NUMERIC"/>
+      <result column="COUNTRY_NAME" property="name" jdbcType="VARCHAR"/>
+      <result column="COUNTRY_CREATED" property="created" jdbcType="TIMESTAMP"/>
+      <result column="COUNTRY_MODIFIED" property="modified" jdbcType="TIMESTAMP"/>
+      <association property="currency" javaType="com.bindstone.graphbank.domain.Currency">
+      </association>
    </resultMap>
 
    <sql id="country_result">
-        id(country) AS ID,
-        country.id AS UUID,
-        country.name AS NAME,
-        country.created AS CREATED,
-        country.modified AS MODIFIED
+      id(country) AS COUNTRY_ID,
+      country.id AS COUNTRY_UUID,
+      country.name AS COUNTRY_NAME,
+      country.created AS COUNTRY_CREATED,
+      country.modified AS COUNTRY_MODIFIED
     </sql>
 
    <sql id="country_update">
@@ -53,6 +55,6 @@
 
    <delete id="delete" parameterType='String'>
         MATCH (country:Country {id: #{id}}) DELETE country
-    </delete>
+   </delete>
 
 </mapper>

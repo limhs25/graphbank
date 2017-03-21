@@ -9,10 +9,9 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class Currency extends AbstractNode {
     private String name;
     private String iso;
+    private String code;
+    private int unit;
 
-    /**
-     * BUILDER
-     */
     public static Builder getBuilder(String name) {
         return new Builder(name);
     }
@@ -31,6 +30,22 @@ public class Currency extends AbstractNode {
 
     public void setIso(String iso) {
         this.iso = iso;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public int getUnit() {
+        return unit;
+    }
+
+    public void setUnit(int unit) {
+        this.unit = unit;
     }
 
     @Override
@@ -59,6 +74,10 @@ public class Currency extends AbstractNode {
                 .toHashCode();
     }
 
+    /**********************************************************************************
+     * BUILDER
+     */
+
     public static class Builder {
 
         private Currency built;
@@ -70,6 +89,16 @@ public class Currency extends AbstractNode {
 
         public Builder iso(String iso) {
             built.iso = iso;
+            return this;
+        }
+
+        public Builder code(String code) {
+            built.code = code;
+            return this;
+        }
+
+        public Builder unit(int unit) {
+            built.unit = unit;
             return this;
         }
 

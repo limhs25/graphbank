@@ -1,18 +1,18 @@
 name: Graphbank_Frontend
-description: A Dart app that uses Angular 2
+description: A Dart App that uses Angular 2
 version: 0.0.1
 environment:
-  sdk: '>=1.19.0 <2.0.0'
+  sdk: any
 dependencies:
-  http_server: '>=0.9.6'
-  http: '>=0.11.3'
-  browser: '>=0.10.0 <0.11.0'
-  angular2: '>=2.2.0 <2.3.0'
-  angular2_components: '>=0.2.2 <0.3.0'
-  source_gen: '>=0.5.3'
+  http_server: any
+  http: any
+  browser: any
+  angular2: any
+  angular2_components: any
+  source_gen: any
   json_object: any
 dev_dependencies:
-  dart_to_js_script_rewriter: ^1.0.1
+  dart_to_js_script_rewriter: any
 transformers:
 - angular2:
     platform_directives:

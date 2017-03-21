@@ -9,18 +9,18 @@ part of dartbank.web.service.country;
 
 abstract class _$CountryService_rest_crud {
 //
-// **************************************************************************
+// ***********************************************************************
 // * OVERRIDE THE FOLLOWING METHODES
-// **************************************************************************
+// ***********************************************************************
 
   BrowserClient getBrowserClient();
   String getUrl();
 
-// **************************************************************************
+// ***********************************************************************
 // * Get ALL
-// **************************************************************************
+// ***********************************************************************
 
-  Future<List<Country>> getAll() async {
+  Future<List<CountryService>> getAll() async {
     try {
       print("CountryService:FindAll");
       final response = await getBrowserClient().get(getUrl());
@@ -31,11 +31,11 @@ abstract class _$CountryService_rest_crud {
     }
   }
 
-// **************************************************************************
+// ***********************************************************************
 // * Find BY ID
-// **************************************************************************
+// ***********************************************************************
 
-  Future<Country> findById(String id) async {
+  Future<CountryService> findById(String id) async {
     try {
       print("CountryService:FindById $id");
       final response = await getBrowserClient().get(getUrl() + id);
@@ -46,13 +46,13 @@ abstract class _$CountryService_rest_crud {
     }
   }
 
-// **************************************************************************
+// ***********************************************************************
 // * Save Object
-// **************************************************************************
+// ***********************************************************************
 
   Future<Country> save(Country country) async {
     try {
-      print("CountryService:Save $country");
+      print("CountryService:Save country");
       String jsonData = JSON.encode(country);
       Map<String, String> header = new Map();
       final response = await getBrowserClient().put(getUrl(),
@@ -64,9 +64,9 @@ abstract class _$CountryService_rest_crud {
     }
   }
 
-// **************************************************************************
+// ***********************************************************************
 // * Delete BY ID
-// **************************************************************************
+// ***********************************************************************
 
   Future delete(String id) async {
     try {
@@ -77,32 +77,32 @@ abstract class _$CountryService_rest_crud {
     }
   }
 
-// **************************************************************************
+// ***********************************************************************
 // * Extract List
-// **************************************************************************
+// ***********************************************************************
 
   dynamic extractDataList(Response res) {
     List body = JSON.decode(res.body);
 
     body.forEach((value) => print(value));
-    List<Country> countries =
+    List<CountryService> countryservices =
     body.map((value) => new Country.fromJson(value)).toList();
 
-    return countries;
+    return countryservices;
   }
 
-// **************************************************************************
+// ***********************************************************************
 // * Extract Object
-// **************************************************************************
+// ***********************************************************************
 
-  Country extractData(Response res) {
-    Country body = JSON.decode(res.body);
+  CountryService extractData(Response res) {
+    CountryService body = JSON.decode(res.body);
     return body;
   }
 
-// **************************************************************************
+// ***********************************************************************
 // EXCEPTION Handlers:
-// **************************************************************************
+// ***********************************************************************
 
   Exception handleError(dynamic e) {
     print("CountryService:Exception $e");

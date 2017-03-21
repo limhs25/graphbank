@@ -12,7 +12,7 @@ import 'package:http/http.dart';
 part 'country_service.g.dart';
 
 @Injectable()
-@RestCrud()
+@RestCrud(entityClass: "Country")
 class CountryService extends _$CountryService_rest_crud {
   static const countryUrl = 'http://localhost:8181/country/';
   final BrowserClient _http;
