@@ -80,14 +80,13 @@ public class CountryController extends AbstractController<Country> {
     }
 
     /**
-     * UPDATE COUNTRY
+     * LOAD COUNTRY FROM XML
      *
-     * @param input
      * @return
      */
-    @RequestMapping(value = "/loadCountries", method = RequestMethod.POST)
+    @RequestMapping(value = "/action/loadCountries", method = RequestMethod.POST)
     @CrossOrigin
-    public ResponseEntity<Void> loadCountries(@RequestBody Country input) {
+    public ResponseEntity<Void> loadCountries() {
         importService.load();
         return ack();
     }

@@ -81,4 +81,12 @@ public class CountyRestTest extends AbstractRestTest {
                 .then().statusCode(200);
     }
 
+    @Test
+    public void loadCountries() throws Exception {
+        Assert.assertNotNull("Service validation", countryService);
+        RestAssuredMockMvc
+                .post(ROOT + "action/loadCountries")
+                .then().statusCode(200);
+    }
+
 }
